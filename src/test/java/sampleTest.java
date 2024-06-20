@@ -4,7 +4,7 @@ import com.intuit.karate.junit5.Karate;
 
         @Karate.Test
         Karate testSample() {
-            return Karate.run("sample.feature").relativeTo(getClass());
+            return Karate.run("users/sample.feature").relativeTo(getClass());
         }
     }
 
