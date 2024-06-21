@@ -5,6 +5,15 @@ Feature: Validar api regresin
     And match response.data.first_name == 'Janet'
     Then status 200
 
+    Scenario: validar obtener lista de usuarios
+      * def JsonResponse = read('../jsons/UsuariosResponse.json')
+      Given url 'https://reqres.in/api/users?page=2'
+      When method GET
+      Then status 200
+      And match $ == JsonResponse
+      And match $ == read('../jsons/UsuariosResponse.json')
+      And match JsonResponse.data[0].first_name == 'Michael'
+
   Scenario Outline: validar creacion de usuario metodo post
     Given url 'https://reqres.in/api/users'
     When request {"name": "#(name)","job": "#(job)"}
